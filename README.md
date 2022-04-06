@@ -10,25 +10,76 @@ Images are now hosted directly on GitHub:
 docker pull ghcr.io/cnescatlab/pylint:latest
 ```
 
-#### Run core checks
+#### Run core and CNES checks for SonarQube
 Assuming current directory contains the source code to analyze, simply run the following command:
 ```Dockerfile
-docker run --rm -v ${PWD}:/src ghcr.io/cnescatlab/pylint:latest pylint <module_name>
+docker run --rm -v ${PWD}:/src ghcr.io/cnescatlab/pylint:latest pylint --load-plugins=cnes_checker,pylint_sonarjson --output-format=sonarjson --sonar-rules=<rules> <module_name>
 ```
 
-#### Run core and CNES checks
-Assuming current directory contains the source code to analyze, simply run the following command:
-```Dockerfile
-docker run --rm -v ${PWD}:/src ghcr.io/cnescatlab/pylint:latest pylint --load-plugins=cnes_checker <module_name>
-```
+#### Default configuration
+By default, pylintrc defines many specific options. See [pylintrc](https://github.com/omegacen/pylint-sonarjson/blob/master/pylintrc) for more information.
+
+##### Activated plugins
+- cnes_checker
+- pylint.extensions.check_elif
+- pylint_sonarjson
+
+##### Activated rules
+- C0113
+- C0122
+- C0203
+- C0204
+- C0326
+- C0411
+- C0412
+- C0413
+- E0108
+- E0213
+- E0601
+- E0602
+- F0002
+- R0203
+- R0204
+- R0401
+- R0915
+- R5101
+- R5102
+- R5103
+- R5104
+- R5105
+- R5106
+- R5201
+- R5301
+- R5302
+- R5401
+- R5402
+- R5403
+- W0102
+- W0312
+- W0403
+- W0404
+- W0406
+- W0602
+- W0603
+- W0612
+- W0621
+- W0622
+- W0703
+- W9095
+- W9096
+- W9097
+
+#### pylint_sonarjson
+For more information about injecting Pylint results in SonarQube please refer to the documentation of [omegacen/pylint-sonarjson](https://github.com/omegacen/pylint-sonarjson) plugins.
 
 ### Versions matrix
 Here is the versions matrix of the image:
 
-|                                    TAG                                        |         PYLINT VERSION / CNES EXTENSION VERSION            |                        BASE IMAGE                      |
-|:-----------------------------------------------------------------------------:|:----------------------------------------------------------:|:------------------------------------------------------:|
-| [latest](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0)| [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0)| [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
-|  [2.5.0](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0)| [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0)| [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+|                                    TAG                                             |         PYLINT / CNES EXTENSION / PYLINT_SONARJSON VERSION            |                        BASE IMAGE                      |
+|:----------------------------------------------------------------------------------:|:----------------------------------------------------------:|:------------------------------------------------------:|
+| [latest](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)   | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+| [2.5.0-1](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)  | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+|  [2.5.0](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0)     | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / - | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
 
 ### How to contribute
 If you experienced a problem with the plugin please open an issue. Inside this issue please explain us how to reproduce this issue and paste the log.
