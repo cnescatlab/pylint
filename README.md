@@ -13,7 +13,7 @@ docker pull ghcr.io/cnescatlab/pylint:latest
 #### Run core and CNES checks for SonarQube
 Assuming current directory contains the source code to analyze, simply run the following command:
 ```Dockerfile
-docker run --rm -v ${PWD}:/src ghcr.io/cnescatlab/pylint:latest pylint --load-plugins=cnes_checker,pylint_sonarjson --output-format=sonarjson --sonar-rules=<rules> <module_name>
+docker run --rm -v ${PWD}:/src ghcr.io/cnescatlab/pylint:latest pylint <module_name>
 ```
 
 #### Default configuration
@@ -77,9 +77,9 @@ Here is the versions matrix of the image:
 
 |                                    TAG                                             |         PYLINT / CNES EXTENSION / PYLINT_SONARJSON VERSION            |                        BASE IMAGE                      |
 |:----------------------------------------------------------------------------------:|:----------------------------------------------------------:|:------------------------------------------------------:|
-| [latest](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)   | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
-| [2.5.0-1](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)  | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
-|  [2.5.0](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0)     | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / - | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+| [latest](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)   | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/pylint-2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+| [2.5.0-1](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0-1)  | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/pylint-2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / [1.0.3](https://pypi.org/project/pylint-sonarjson/) | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
+|  [2.5.0](https://github.com/cnescatlab/pylint/pkgs/container/cnescatlab/2.5.0)     | [2.5.0](https://github.com/PyCQA/pylint/releases/tag/pylint-2.5.0) / [v5.0.0](https://github.com/cnescatlab/cnes-pylint-extension/releases/tag/v5.0.0) / - | [python:3.10.3-slim-buster](https://hub.docker.com/_/python) |
 
 ### How to contribute
 If you experienced a problem with the plugin please open an issue. Inside this issue please explain us how to reproduce this issue and paste the log.
